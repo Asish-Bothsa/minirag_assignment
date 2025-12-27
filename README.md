@@ -116,22 +116,23 @@ Manual evaluation showed consistent grounding behavior, with no hallucinated or 
 ```bash
 uv venv .venv
 ```
-##2. Activate the environment
+### 2. Activate the environment
 ```
 .venv\Scripts\activate
 ```
-##3. Install dependencies
+### 3. Install dependencies
 ```
 uv pip install -r requirements.txt
 ```
-##4. Set environment variables
+### 4. Set environment variables
 ```
 OPENAI_API_KEY=your_api_ke
 ```
-##5. Run the application
+### 5. Run the application
 ```
 streamlit run app.py
 ```
+
 
 
 
