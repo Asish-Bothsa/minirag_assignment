@@ -5,7 +5,7 @@ from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI,OpenAIEmbeddings
 from langchain.schema import SystemMessage, HumanMessage
 # from langchain_ollama import Chatollama
 
@@ -57,9 +57,14 @@ def build_vectorstore(uploaded_files):
     )
     chunks = splitter.split_documents(documents)
 
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+    # embeddings = HuggingFaceEmbeddings(
+    #     model_name="sentence-transformers/all-MiniLM-L6-v2"
+    # )
+    embeddings = OpenAIEmbeddings(
+    model="text-embedding-3-small",
+    openai_api_key=os.getenv("OPENAI_API_KEY"),
+)
+
     vectorstore = FAISS.from_documents(chunks, embeddings)
     vectorstore.save_local(VECTORSTORE_PATH)
     return vectorstore
@@ -67,9 +72,13 @@ def build_vectorstore(uploaded_files):
 # LOAD EXISTING VECTOR STORE
 
 def load_vectorstore():
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+    # embeddings = HuggingFaceEmbeddings(
+    #     model_name="sentence-transformers/all-MiniLM-L6-v2"
+    # )
+    embeddings = OpenAIEmbeddings(
+    model="text-embedding-3-small",
+    openai_api_key=os.getenv("OPENAI_API_KEY"),
+)
 
     return FAISS.load_local(
         VECTORSTORE_PATH,

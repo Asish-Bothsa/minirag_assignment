@@ -61,7 +61,8 @@ Users upload PDF or Markdown files through the Streamlit interface.
 
 - Uploaded documents are temporarily stored during processing  
 - Text is split into chunks with overlap to preserve context  
-- Each chunk is converted into embeddings using a sentence-transformer model  
+- Each chunk is converted into embeddings using a sentence-transformer model 
+-I used API-based embeddings to avoid PyTorch dependency issues on hosted environments. Sentence-transformer embeddings were used locally during development.” 
 - Embeddings are stored in a **local FAISS vector index**  
 
 Indexing is triggered explicitly to avoid repeated processing during normal interactions.
