@@ -1,0 +1,22 @@
+# Core
+python-dotenv==1.0.1
+numpy==1.26.4
+
+# LangChain (MUST be aligned)
+langchain==0.2.11
+langchain-core==0.2.23
+langchain-community==0.2.10
+langchain-openai==0.1.17
+
+# Embeddings
+sentence-transformers==2.7.0
+torch==2.2.2
+
+# Vector DB
+faiss-cpu==1.8.0
+
+# Document loaders
+pypdf==4.2.0
+
+# UI
+streamlit==1.35.0
